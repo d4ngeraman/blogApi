@@ -1,0 +1,47 @@
+<div class="container" *ngIf="currentBlog">
+    <div class="row" style="text-align: left">
+        <div class="col-md-12">
+            <form #createBlogForm="ngForm" (ngSubmit)="editThisBlog()" class="form-horizontal">
+                <div class="form-group">
+                    <label for="email">Blog Title:</label>
+
+
+                    <input type="text" class="form-control" name="blogTitle" [(ngModel)]="currentBlog.title" #title="ngModel"
+                        required>
+                </div>
+                <div class="alert alert-danger" [hidden]="title.valid || title.pristine">
+                    Blog Title is required
+                </div>
+                <div class="form-group">
+                    <label for="email">Blog Description:</label>
+
+                    <input type="text" class="form-control" name="blogDescription" [(ngModel)]="currentBlog.description"
+                        #description="ngModel" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Enter the blog Body</label>
+
+                    <textarea class="form-control" name="blogBodyHtml" [(ngModel)]="currentBlog.bodyHtml" #bodyHtml="ngModel"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-group">
+                        Category
+                    </label>
+                    <select name="blogCategory" class="form-control" [(ngModel)]="currentBlog.category" #category="ngModel"
+                        id="category">
+                        <option *ngFor="let category of possibleCategories" [value]="category">{{category}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" [disabled]="!createBlogForm.form.valid">Edit the
+                        blog</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
